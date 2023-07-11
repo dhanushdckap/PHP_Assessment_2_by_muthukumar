@@ -11,20 +11,20 @@ class User_Model extends database {
         return $this->database->query("show databases")->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function creating_Table($tableData){
-        $databaseName = $tableData["database"];
-        $tableName = $tableData["table-name"];
-        $coulmnName = $tableData["column-name"];
-        $dataType = $tableData["data-type"];
-
+    public function creating_Table($database_name,$table_name,$column_name,$data_type){
         $this->database->query("
-            USE $databaseName;
-            create table $tableName(
-                id int not null AUTO_INCREMENT,
-                $coulmnName $dataType,
-                primary key(id)
-            );
+        USE $database_name;
+        CREATE TABLE $table_name (
+        id int auto_increment,
+        primary key (id)
+        )
         ");
+        for ($i=0;$i<count($column_name);$i++){
+            $this->database->query("
+                USE $database_name;
+                ALTER TABLE $table_name ADD COLUMN $column_name[$i] $data_type[$i];
+                ");
+        }
         header("location:/");
     }
 

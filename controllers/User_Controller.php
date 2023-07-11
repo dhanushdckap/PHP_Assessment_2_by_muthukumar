@@ -19,16 +19,24 @@ class User_Controller{
         header("location: / ");
     }
     public function show_Tables(){
-        $allDb =  $this->userModel->fetch_Database();
+        $all_database =  $this->userModel->fetch_Database();
         require "views/products/add_Tables.php";
 
     }
     public function creating_Tables($tableData){
-        $this->userModel->creating_Table($tableData);
+        $database_name = $tableData["database"];
+        $table_name = $tableData["table-name"];
+        $column_name = $tableData["column-name"];
+        $data_type = $tableData["data-type"];
+        $this->userModel->creating_Table($database_name,$table_name,$column_name,$data_type);
     }
     public function show_Records(){
         $databae = $this->userModel->fetch_Database();
 
+        require "views/products/add_Records.php";
+    }
+
+    public function sample(){
         require "views/products/add_Records.php";
     }
 
