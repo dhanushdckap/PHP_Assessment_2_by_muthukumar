@@ -10,6 +10,8 @@ $controller->post("/create_database","create_database");
 $controller->post("/add_table","add_table");
 $controller->post("/create_table","create_table");
 $controller->post("/add_row","add_row");
+$controller->post("/get_table","get_table");
+$controller->post("/get_Row","get_Row");
 
 $controller->route();
 
